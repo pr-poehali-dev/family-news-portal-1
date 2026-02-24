@@ -8,21 +8,17 @@ const FOOD_IMG = "https://cdn.poehali.dev/projects/bd290618-5416-4b85-b3d8-94af3
 type Section = "home" | "news" | "concerts" | "menu" | "chat";
 
 const news = [
-  { id: 1, date: "20 февраля 2026", title: "Дедушка вернулся из путешествия!", text: "Дедушка Виктор провёл три недели в Петербурге и привёз кучу впечатлений и фотографий.", emoji: "✈️" },
-  { id: 2, date: "14 февраля 2026", title: "День Влюблённых всей семьёй", text: "Собрались все вместе, пекли торт с клубникой и смотрели старые фотографии.", emoji: "❤️" },
-  { id: 3, date: "2 февраля 2026", title: "Маша поступила в музыкальную школу!", text: "Наша Маша сдала вступительный экзамен на отлично — начинает учиться игре на скрипке.", emoji: "🎻" },
+  { id: 1, date: "24 февраля 2026", title: "Дема пропустил развивашку", text: "Сегодня Дема не попал на развивающие занятия. Ничего страшного — наверстаем на следующей неделе!", emoji: "😅" },
+  { id: 2, date: "23 февраля 2026", title: "Маму пригласили на роль ведущего!", text: "Отличная новость — маму пригласили быть ведущей на мероприятии. Поздравляем, очень гордимся!", emoji: "🎤" },
+  { id: 3, date: "22 февраля 2026", title: "Папина машина сломалась — постриглись пешком", text: "У папы сломалась машина, и вся семья дружно отправилась в парикмахерскую пешком. Зато весело и теперь все красивые!", emoji: "✂️" },
 ];
 
-const concerts = [
-  { id: 1, date: "1 марта 2026", title: "Весенний концерт", place: "Дом культуры «Звезда»", time: "18:00", desc: "Выступают Маша (скрипка) и Петя (фортепиано). Вход свободный для семьи." },
-  { id: 2, date: "15 марта 2026", title: "Квартирник у бабушки", place: "Ул. Лесная, 12", time: "15:00", desc: "Уютный домашний концерт с чаем и пирогами. Все приглашены!" },
-  { id: 3, date: "5 апреля 2026", title: "Городской фестиваль", place: "Парк «Центральный»", time: "12:00", desc: "Семья участвует в городском фестивале молодых талантов." },
-];
+const concerts: { id: number; date: string; title: string; place: string; time: string; desc: string }[] = [];
 
 const recipes = [
-  { id: 1, name: "Бабушкин борщ", time: "2 ч", category: "Обед", emoji: "🍲", ingredients: ["Свёкла, морковь, капуста", "Говядина на кости", "Чеснок, лавровый лист", "Сметана для подачи"] },
-  { id: 2, name: "Яблочный пирог мамы", time: "1 ч", category: "Выпечка", emoji: "🍎", ingredients: ["3 яблока, 200г муки", "100г сахара, 2 яйца", "100г масла", "Ванилин, корица"] },
-  { id: 3, name: "Оливье по-нашему", time: "40 мин", category: "Салат", emoji: "🥗", ingredients: ["Отварная курица", "Картошка, морковь, огурцы", "Зелёный горошек", "Домашний майонез"] },
+  { id: 1, name: "Толчёнка с котлетами", time: "1 ч", category: "Ужин", emoji: "🥔", ingredients: ["Картофель — 1 кг", "Масло сливочное — 50г", "Молоко тёплое — 100 мл", "Котлеты домашние — по числу едоков", "Фарш (свинина+говядина), лук, соль, перец"] },
+  { id: 2, name: "Бабушкин борщ", time: "2 ч", category: "Обед", emoji: "🍲", ingredients: ["Свёкла, морковь, капуста", "Говядина на кости", "Чеснок, лавровый лист", "Сметана для подачи"] },
+  { id: 3, name: "Яблочный пирог мамы", time: "1 ч", category: "Выпечка", emoji: "🍎", ingredients: ["3 яблока, 200г муки", "100г сахара, 2 яйца", "100г масла", "Ванилин, корица"] },
   { id: 4, name: "Пельмени с папой", time: "3 ч", category: "Ужин", emoji: "🥟", ingredients: ["500г свинины+говядины", "Тесто: мука, яйцо, вода", "Лук, соль, перец", "Сливочное масло"] },
 ];
 
@@ -150,15 +146,13 @@ export default function Index() {
             </div>
 
             {/* Next concert */}
-            <div className="bg-[var(--primary)] rounded-2xl p-6 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="bg-[var(--surface)] rounded-2xl p-6 border border-[var(--border)] flex items-center gap-4">
+              <span className="text-3xl">🎵</span>
               <div>
-                <p className="text-white/70 text-xs uppercase tracking-widest mb-1">Ближайший концерт</p>
-                <h3 className="text-xl font-semibold">{concerts[0].title}</h3>
-                <p className="text-white/80 text-sm mt-1">{concerts[0].date} · {concerts[0].time} · {concerts[0].place}</p>
+                <p className="text-xs text-[var(--muted)] uppercase tracking-widest mb-1">Концерты</p>
+                <p className="font-semibold text-[var(--text)]">Ближайшие концерты не ожидаются</p>
+                <p className="text-sm text-[var(--muted)] mt-0.5">Следите за обновлениями на сайте</p>
               </div>
-              <button onClick={() => setActiveSection("concerts")} className="bg-white text-[var(--primary)] font-semibold px-5 py-2.5 rounded-xl text-sm hover:bg-white/90 transition-colors whitespace-nowrap">
-                Подробнее
-              </button>
             </div>
           </div>
         )}
@@ -196,25 +190,10 @@ export default function Index() {
                 <h2 className="font-cormorant text-3xl text-white font-semibold">Концерты и выступления</h2>
               </div>
             </div>
-            <div className="space-y-4">
-              {concerts.map((c, i) => (
-                <div key={c.id} className="bg-white rounded-2xl p-6 border border-[var(--border)] hover:shadow-md transition-shadow flex gap-5">
-                  <div className="flex flex-col items-center justify-start min-w-[52px]">
-                    <span className="bg-[var(--primary)] text-white text-xs font-bold px-2 py-1 rounded-lg text-center leading-tight">
-                      {c.date.split(" ")[0]}<br />{c.date.split(" ")[1]}
-                    </span>
-                    {i < concerts.length - 1 && <div className="w-0.5 flex-1 bg-[var(--border)] mt-2" />}
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-[var(--text)] text-lg">{c.title}</h3>
-                    <div className="flex flex-wrap gap-3 mt-2">
-                      <span className="flex items-center gap-1 text-xs text-[var(--muted)]"><Icon name="Clock" size={12} />{c.time}</span>
-                      <span className="flex items-center gap-1 text-xs text-[var(--muted)]"><Icon name="MapPin" size={12} />{c.place}</span>
-                    </div>
-                    <p className="text-sm text-[var(--muted)] mt-3 leading-relaxed">{c.desc}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="bg-white rounded-2xl p-10 border border-[var(--border)] text-center">
+              <span className="text-5xl">🎵</span>
+              <h3 className="font-semibold text-[var(--text)] text-lg mt-4">Концерты не ожидаются</h3>
+              <p className="text-[var(--muted)] text-sm mt-2">Когда появятся новые выступления — они сразу появятся здесь</p>
             </div>
           </div>
         )}
