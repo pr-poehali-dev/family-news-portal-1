@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg: #f8f6f2;
+  --surface: #f1ede7;
+  --border: #e8e2d9;
+  --text: #1a1714;
+  --muted: #6b6560;
+  --primary: #c47a4a;
+  --primary-dark: #a8623a;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
